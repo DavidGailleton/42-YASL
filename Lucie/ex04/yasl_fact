@@ -1,0 +1,115 @@
+#!yasl
+
+// FUNCTIONS
+
+{
+    // Take a str in param and print it with the usage the exit with error code
+
+    "Error: ":6
+    6:print
+
+    5:print
+
+    "usage: ./yasl_fact  <number>\n":6
+    6:print
+
+    1:5
+    5:exit
+} error_exit
+
+{
+    // Take a str as param and unpack it to check if it is a positive int else exit with error
+
+    5:=:6
+    "":6
+    6:==:6
+    6:? (
+        "param must be an positive number\n":5
+        error_exit
+    )
+
+    5:][:6
+
+    6:#(
+        6:=:7
+        "9":7
+        7:>:7
+        7:? (
+            "param must be an positive number\n":5
+            error_exit
+        )
+
+        6:=:7
+        "0":7
+        7:<:7
+        7:? (
+            "param must be an positive number\n":5
+            error_exit
+        )
+        6:!
+    )
+} test_int
+
+{
+    // check if there exactly 1 program params and it is a positive int
+
+    #:6
+    1:6
+    6:!=:6
+    6:? (
+        "Must have exactly 1 param\n":5
+        error_exit
+    )
+
+    =:5
+    test_int
+} test_params
+
+{
+    // compute the factorial recursively and put the result in 6
+
+    6:=:7
+    6:*:6
+    1:7
+    7:+:7
+    7:=:6
+    5:=:7
+    7:<=:7
+    7:? (
+        7:#:7 7:%?(7:#!)
+        fact_recursive
+    )
+    7:#:7 7:%?(7:#!)
+} fact_recursive
+
+{
+    // take a number as argument and print its factorial
+
+    5:=:6
+    20:6
+    6:<=:6
+    6:? (
+        1:6
+        1:6
+        fact_recursive
+        6:!
+        6:print
+    ) : (
+        "the factorial will overflow, try with a smaller number\n":5
+        error_exit
+    )
+    6:#:6 6:%?(6:#!)
+    5:#:5 5:%?(5:#!)
+} factorial
+
+// MAIN CODE
+
+0:!
+0:!
+test_params
+0:=:1
+0:!
+1:eval:1
+
+1:=:5
+factorial

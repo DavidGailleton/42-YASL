@@ -1,0 +1,16 @@
+#!yasl
+//works because of cross type dogshit
+
+!!
+eval
+2
+^
+eval
+
+#
+@ (
+    print
+    "\n"
+    print
+    #
+    )

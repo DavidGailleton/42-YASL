@@ -1,0 +1,115 @@
+#!yasl
+
+// FUNCTIONS
+
+{
+    // Take a str in param and print it with the usage the exit with error code
+
+    "Error: ":6
+    6:print
+
+    5:print
+
+    "usage: ./yasl_fact  <number>\n":6
+    6:print
+
+    1:5
+    5:exit
+} error_exit
+
+{
+    5:][:6
+    1:6
+    6:>:6
+    6:? (
+        "The delimiter must be a single character\n":5
+        error_exit
+    ) : (
+        6:=:5
+    )
+} get_delimiter
+
+{
+    // check if there exactly 2 string
+
+    #:6
+    2:6
+    6:<:6
+    6:? (
+        "Must have exactly 2 param\n":5
+        error_exit
+    )
+
+    0:=:6
+    "":6
+    6:==:6
+    6:?(
+        "Arguments cannot be empty\n":5
+        error_exit
+    )
+    2:0 0:^
+    0:=:6
+    "":6
+    6:==:6
+    6:?(
+        "Arguments cannot be empty\n":5
+        error_exit
+    )
+    2:0 0:^
+    =:5
+    get_delimiter
+    0:!
+} test_params
+
+{
+    0:][:6
+    6:!
+    1:7
+    7:@(
+        5:=:7
+        6:#:6
+        6:~~:6
+        6:?(0:6 6:exit)
+        6:=:7
+        7:==:7
+        7:=:8
+        8:?(6:!)
+    )
+    6:#:6
+    6:#(
+        6:=:7
+        6:!
+    )
+    7:=:8
+    8:@(
+        5:=:8
+        7:=:8
+        8:==:8
+        8:=:9
+        9:?(7:!)
+    )
+
+    7:#:7
+    7:~~:7
+    7:?(0:7 7:exit)
+    7:#:7
+    7:#(
+        7:=:7
+        5:=:7
+        7:==:7
+        7:? (
+            "\n":7
+            7:print
+            7:!
+        ) : 7:print
+    )
+    "\n":7
+    7:print
+} split
+
+
+0:!
+0:!
+
+test_params
+split
