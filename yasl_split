@@ -2,6 +2,9 @@
 
 !!
 
+# 2 !=
+? ("Only 2 args is required\n" print 1 exit)
+
 =
 0:][:1
 1:1
